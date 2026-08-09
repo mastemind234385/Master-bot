@@ -2,3 +2,4 @@ python-telegram-bot
 requests
 bs4
 hijridate
+yt-dlp
