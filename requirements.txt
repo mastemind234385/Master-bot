@@ -3,3 +3,4 @@ requests
 bs4
 hijridate
 yt-dlp
+edge-tts
