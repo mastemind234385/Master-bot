@@ -4,5 +4,6 @@ bs4
 hijridate
 yt-dlp
 edge-tts
+Pillow
 qrcode
 sympy
