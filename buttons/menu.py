@@ -632,7 +632,7 @@ def get_bangla_date(date):
     if sm <= 3:
         start_year += 1
 
-    start = datetime(start_year, sm, sd)
+    start = datetime(start_year, sm, sd, tzinfo=date.tzinfo)
 
     diff = (date - start).days + 1
 
