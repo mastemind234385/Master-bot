@@ -3,6 +3,7 @@
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import MessageHandler, ContextTypes, filters
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from hijridate import Gregorian
 from config import WEATHER_API_KEY
 
@@ -688,7 +689,8 @@ async def menu(update: Update, _context: ContextTypes.DEFAULT_TYPE):
 
     elif text == "🕒 Time":
 
-        now = datetime.now()
+        # Bangladesh Time (Asia/Dhaka)
+        now = datetime.now(ZoneInfo("Asia/Dhaka"))
 
         days = {
             "Monday":"সোমবার",
@@ -802,7 +804,8 @@ async def menu(update: Update, _context: ContextTypes.DEFAULT_TYPE):
 
         timings = data["data"]["timings"]
 
-        now = datetime.now()
+        # Bangladesh Time (Asia/Dhaka)
+        now = datetime.now(ZoneInfo("Asia/Dhaka"))
 
         prayers = [
             ("🌅 ফজর", timings["Fajr"]),
@@ -824,7 +827,8 @@ async def menu(update: Update, _context: ContextTypes.DEFAULT_TYPE):
             ).replace(
                 year=now.year,
                 month=now.month,
-                day=now.day
+                day=now.day,
+                tzinfo=ZoneInfo("Asia/Dhaka")
             )
 
             if prayer_time > now:
@@ -850,7 +854,8 @@ async def menu(update: Update, _context: ContextTypes.DEFAULT_TYPE):
             ).replace(
                 year=tomorrow.year,
                 month=tomorrow.month,
-                day=tomorrow.day
+                day=tomorrow.day,
+                tzinfo=ZoneInfo("Asia/Dhaka")
             )
 
             next_prayer = ("🌅 Fajr", fajr_time)
